@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import { Suspense } from "react";
+import { StaffToolbar } from "./components/staff-toolbar";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -28,7 +30,12 @@ export default function RootLayout({
       lang="es"
       className={`${playfair.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        <Suspense fallback={null}>
+          <StaffToolbar />
+        </Suspense>
+      </body>
     </html>
   );
 }
