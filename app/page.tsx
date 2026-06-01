@@ -1,65 +1,595 @@
-import Image from "next/image";
+const socios = [
+  {
+    nombre: "Paula",
+    cargo: "Socia Fundadora",
+    especialidad: "Derecho Digital · Protección de Datos · Paciencia Infinita",
+    bio: "Colegiada nº 42.069 en el ICAM. Lleva 12 años ejerciendo y 12 años intentando que sus socios no se duerman durante los juicios. Pionera en la aplicación del RGPD al sector de las golosinas para gatos. Ha ganado el 94% de sus casos, aunque el 6% restante se resolvió cuando Paco simplemente se fue.",
+    logros: [
+      "Colegiada ICAM · Máster en RGPD",
+      "Premio 'Abogada del Año' (según sus gatos)",
+      "Resistencia certificada a las faltas de atención",
+      "Única socia que responde los emails",
+    ],
+    emoji: "⚖️",
+  },
+  {
+    nombre: "Paco",
+    cargo: "Socio Senior",
+    especialidad: "Derecho Felino · Intimidación Procesal · Siesta Estratégica",
+    bio: "7 años en el sector (49 en años gato). Su mirada fija durante los interrogatorios ha conseguido más acuerdos extrajudiciales que todos los abogados del ICAM juntos. Especialista en derechos de paso, reclamaciones de territorio y caza mayor de ratones. No acepta casos que interrumpan su horario de siesta.",
+    logros: [
+      "Experto en miradas intimidatorias (certificado)",
+      "Campeón nacional de siesta jurídica 2022–2024",
+      "Récord: 14 acuerdos en un mismo bufé",
+      "DPC — Delegado de Protección de Croquetas",
+    ],
+    emoji: "🐱",
+  },
+  {
+    nombre: "Agustín",
+    cargo: "Socio de Privacidad",
+    especialidad: "RGPD · Derechos Digitales · Esponjosidad Avanzada",
+    bio: "El más esponjoso del bufete y, paradójicamente, el más experto en RGPD. Ha redactado 47 políticas de privacidad, aunque ninguna cubre el tratamiento de datos de ratones. Su pelo blanco no es por la edad: es por los plazos de la AEPD. Trabaja desde casa. Siempre.",
+    logros: [
+      "CIPP/E · Certificado en Esponjosidad Avanzada",
+      "47 políticas de privacidad redactadas",
+      "Ex-asesor de la AEPD (rumores no confirmados)",
+      "Récord de siesta continua: 16h 42min",
+    ],
+    emoji: "🤍",
+  },
+];
+
+const areas = [
+  {
+    titulo: "RGPD",
+    subtitulo: "Reglamento General de Protección de Datos y de Croquetas",
+    descripcion:
+      "Asesoramiento integral en protección de datos personales. Incluye DPO externo, auditoría de brechas y verificación de si tu gato sabe dónde guardas la comida premium.",
+    icono: "🛡️",
+  },
+  {
+    titulo: "LOPDGDD",
+    subtitulo: "Ley de Obligatoria Protección De Gatos Domésticos Dormilones",
+    descripcion:
+      "Especialistas en la aplicación de esta ley. Especialmente el artículo 13, que garantiza el derecho fundamental a ignorar al humano durante las videollamadas de trabajo.",
+    icono: "📚",
+  },
+  {
+    titulo: "Derechos Digitales",
+    subtitulo: "Incluyendo el derecho a ignorar notificaciones",
+    descripcion:
+      "Derecho al olvido, derecho a la desconexión digital, y derecho fundamental a no ser grabado mientras duermes en posición comprometida sobre el teclado.",
+    icono: "💻",
+  },
+  {
+    titulo: "Derecho Felino",
+    subtitulo: "Especialidad única en España peninsular e islas",
+    descripcion:
+      "Reclamaciones de territorio, derechos de paso por encima del portátil, impugnaciones de horario de comida y recursos contra el veterinario. Primera consulta gratis si traes atún.",
+    icono: "🐾",
+  },
+];
+
+const honorarios = [
+  {
+    servicio: "Consulta Inicial",
+    precio: "Gratis",
+    detalle:
+      "Con acreditación de que dispones de croquetas de categoría premium o superior",
+    icono: "📋",
+  },
+  {
+    servicio: "Expediente Completo",
+    precio: "3 croquetas",
+    detalle:
+      "Más una rascada detrás de las orejas. Agustín exige ambas orejas en simultáneo.",
+    icono: "📁",
+  },
+  {
+    servicio: "Recurso de Amparo",
+    precio: "1 lata de atún",
+    detalle:
+      "En aceite de oliva. Sin espinas. Paco lo comprobará personalmente antes de aceptar.",
+    icono: "⚖️",
+  },
+  {
+    servicio: "Urgencias 24h",
+    precio: "Bajo consulta",
+    detalle:
+      "Disponible solo fuera del horario de siesta. Ver calendario de siestas adjunto (157 páginas).",
+    icono: "🚨",
+  },
+];
+
+const testimonios = [
+  {
+    texto:
+      "Gracias a Agustín, conseguí que mi dueño me comprara la cama ortopédica premium. El RGPD aplicado al confort felino es absolutamente revolucionario.",
+    autor: "Misifu García",
+    cargo: "Gata indignada, Salamanca",
+  },
+  {
+    texto:
+      "Paco me miró fijamente durante 40 minutos en la sala de espera. Llegué a un acuerdo con mi propietario antes de que terminara la consulta. Sin palabras.",
+    autor: "Bigotes Martínez",
+    cargo: "Gato procesalmente intimidado, Sevilla",
+  },
+  {
+    texto:
+      "Contraté a Paula para reclamar mi derecho constitucional a dormir 18 horas diarias. Ganamos en primera instancia. El juez también tenía gatos.",
+    autor: "Princesa López",
+    cargo: "Clienta satisfecha, Barcelona",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main
+      className="min-h-screen text-zinc-100"
+      style={{ backgroundColor: "#09090b", fontFamily: "var(--font-inter)" }}
+    >
+      {/* NAVBAR */}
+      <nav
+        className="fixed top-0 w-full z-50 backdrop-blur-md border-b"
+        style={{
+          backgroundColor: "rgba(9,9,11,0.85)",
+          borderColor: "rgba(201,168,76,0.2)",
+        }}
+      >
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div
+            className="font-bold text-sm tracking-[0.25em] uppercase"
+            style={{ fontFamily: "var(--font-playfair)", color: "#c9a84c" }}
+          >
+            Bufete P.P.A.
+          </div>
+          <div className="hidden md:flex gap-8 text-xs text-zinc-400 tracking-widest uppercase">
+            {[
+              { label: "Socios", href: "#socios" },
+              { label: "Áreas", href: "#areas" },
+              { label: "Honorarios", href: "#honorarios" },
+              { label: "Contacto", href: "#contacto" },
+            ].map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="hover:text-zinc-100 transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%)",
+          }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto pt-20">
+          <p
+            className="text-xs tracking-[0.5em] uppercase mb-8"
+            style={{ color: "#c9a84c" }}
+          >
+            Ilustre Bufete · Madrid · Desde 2019
+          </p>
+          <h1
+            className="text-5xl md:text-8xl font-bold leading-tight mb-6"
+            style={{ fontFamily: "var(--font-playfair)" }}
+          >
+            Paco, Paula
+            <br />
+            <span style={{ color: "#c9a84c" }}>&</span> Agustín
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+          <p className="text-zinc-400 text-lg md:text-xl mb-4 font-light max-w-2xl mx-auto">
+            Expertos en Protección de Datos, Derechos Digitales
+            <br />y Derecho Felino Internacional
+          </p>
+          <p className="text-zinc-600 text-sm mb-12 italic">
+            &ldquo;La justicia es ciega. Nosotros también, especialmente durante
+            la siesta.&rdquo;
+          </p>
+          <div className="flex gap-4 justify-center flex-wrap">
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="#socios"
+              className="px-8 py-3 text-sm font-bold tracking-widest uppercase transition-opacity hover:opacity-80"
+              style={{ backgroundColor: "#c9a84c", color: "#09090b" }}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
+              Conocer al Equipo
+            </a>
             <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="#contacto"
+              className="px-8 py-3 text-sm font-bold tracking-widest uppercase border transition-opacity hover:opacity-80"
+              style={{ borderColor: "rgba(201,168,76,0.4)", color: "#c9a84c" }}
             >
-              Learning
-            </a>{" "}
-            center.
+              Consulta Inicial
+            </a>
+          </div>
+        </div>
+        <div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40"
+          style={{ color: "#c9a84c" }}
+        >
+          <div className="w-px h-12 bg-current" />
+          <span className="text-xs tracking-widest uppercase">scroll</span>
+        </div>
+      </section>
+
+      {/* FOTO + PRESENTACIÓN */}
+      <section className="max-w-6xl mx-auto px-6 py-24">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="relative">
+            <div
+              className="aspect-[4/3] overflow-hidden border relative"
+              style={{ borderColor: "rgba(201,168,76,0.2)", backgroundColor: "#18181b" }}
+            >
+              {/* Guarda la foto como public/equipo.jpg */}
+              <img
+                src="/equipo.jpg"
+                alt="Paula, Paco y Agustín — El equipo del bufete"
+                className="w-full h-full object-cover absolute inset-0"
+              />
+              <div className="w-full h-full flex items-center justify-center text-6xl relative z-10 pointer-events-none">
+                ⚖️&nbsp;🐱&nbsp;🤍
+              </div>
+            </div>
+            <div
+              className="absolute -bottom-4 -right-4 px-4 py-2 text-xs font-bold tracking-widest uppercase"
+              style={{ backgroundColor: "#c9a84c", color: "#09090b" }}
+            >
+              ICAM · RGPD · LOPDGDD
+            </div>
+          </div>
+          <div>
+            <p
+              className="text-xs tracking-[0.4em] uppercase mb-4"
+              style={{ color: "#c9a84c" }}
+            >
+              Quiénes somos
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-bold mb-6"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              El bufete más peludo
+              <br />
+              de Madrid
+            </h2>
+            <p className="text-zinc-400 leading-relaxed mb-4 text-sm">
+              Fundado en 2019, el Bufete Paco, Paula & Agustín nació de la
+              necesidad urgente de combinar rigor jurídico con la perspectiva
+              única de quienes duermen 16 horas al día.
+            </p>
+            <p className="text-zinc-400 leading-relaxed mb-8 text-sm">
+              Nuestro enfoque multidisciplinar —humanos y felinos trabajando
+              juntos— nos permite abordar casos desde ángulos que los bufetes
+              tradicionales simplemente no consideran. Como el de debajo de la
+              mesa.
+            </p>
+            <div
+              className="grid grid-cols-3 gap-4 border-t pt-8"
+              style={{ borderColor: "#27272a" }}
+            >
+              {[
+                { num: "12+", label: "años ejerciendo" },
+                { num: "47", label: "políticas de privacidad" },
+                { num: "∞", label: "siestas jurídicas" },
+              ].map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <div
+                    className="text-3xl font-bold"
+                    style={{
+                      fontFamily: "var(--font-playfair)",
+                      color: "#c9a84c",
+                    }}
+                  >
+                    {stat.num}
+                  </div>
+                  <div className="text-zinc-500 text-xs mt-1">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SOCIOS */}
+      <section id="socios" className="py-24" style={{ backgroundColor: "#0d0d10" }}>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p
+              className="text-xs tracking-[0.4em] uppercase mb-4"
+              style={{ color: "#c9a84c" }}
+            >
+              Nuestro equipo
+            </p>
+            <h2
+              className="text-4xl md:text-5xl font-bold"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Los Socios
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {socios.map((socio) => (
+              <div
+                key={socio.nombre}
+                className="border p-8"
+                style={{ borderColor: "#27272a" }}
+              >
+                <div className="text-5xl mb-5">{socio.emoji}</div>
+                <p
+                  className="text-xs tracking-widest uppercase mb-1"
+                  style={{ color: "#c9a84c" }}
+                >
+                  {socio.cargo}
+                </p>
+                <h3
+                  className="text-2xl font-bold mb-2"
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
+                  {socio.nombre}
+                </h3>
+                <p className="text-zinc-600 text-xs mb-5 italic">
+                  {socio.especialidad}
+                </p>
+                <p className="text-zinc-400 text-sm leading-relaxed mb-6">
+                  {socio.bio}
+                </p>
+                <ul className="space-y-2">
+                  {socio.logros.map((logro) => (
+                    <li
+                      key={logro}
+                      className="flex items-start gap-2 text-xs text-zinc-500"
+                    >
+                      <span
+                        className="mt-0.5 shrink-0"
+                        style={{ color: "#c9a84c" }}
+                      >
+                        —
+                      </span>
+                      {logro}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ÁREAS */}
+      <section id="areas" className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p
+              className="text-xs tracking-[0.4em] uppercase mb-4"
+              style={{ color: "#c9a84c" }}
+            >
+              Lo que hacemos
+            </p>
+            <h2
+              className="text-4xl md:text-5xl font-bold"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Áreas de Práctica
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {areas.map((area) => (
+              <div
+                key={area.titulo}
+                className="border p-8"
+                style={{ borderColor: "#27272a" }}
+              >
+                <div className="text-4xl mb-5">{area.icono}</div>
+                <h3
+                  className="text-xl font-bold mb-1"
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
+                  {area.titulo}
+                </h3>
+                <p className="text-xs mb-4 italic" style={{ color: "#c9a84c" }}>
+                  {area.subtitulo}
+                </p>
+                <p className="text-zinc-400 text-sm leading-relaxed">
+                  {area.descripcion}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* HONORARIOS */}
+      <section
+        id="honorarios"
+        className="py-24"
+        style={{ backgroundColor: "#0d0d10" }}
+      >
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p
+              className="text-xs tracking-[0.4em] uppercase mb-4"
+              style={{ color: "#c9a84c" }}
+            >
+              Transparencia total
+            </p>
+            <h2
+              className="text-4xl md:text-5xl font-bold mb-4"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Honorarios
+            </h2>
+            <p className="text-zinc-500 text-sm">
+              Aceptamos croquetas, atún y rascadas. Raramente euros.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {honorarios.map((h) => (
+              <div
+                key={h.servicio}
+                className="border p-6 text-center"
+                style={{ borderColor: "#27272a" }}
+              >
+                <div className="text-4xl mb-4">{h.icono}</div>
+                <h3
+                  className="text-lg font-bold mb-2"
+                  style={{ fontFamily: "var(--font-playfair)" }}
+                >
+                  {h.servicio}
+                </h3>
+                <p className="text-xl font-bold mb-3" style={{ color: "#c9a84c" }}>
+                  {h.precio}
+                </p>
+                <p className="text-zinc-500 text-xs leading-relaxed">{h.detalle}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIOS */}
+      <section className="py-24">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p
+              className="text-xs tracking-[0.4em] uppercase mb-4"
+              style={{ color: "#c9a84c" }}
+            >
+              Nuestros clientes hablan
+            </p>
+            <h2
+              className="text-4xl md:text-5xl font-bold"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Testimonios
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonios.map((t) => (
+              <div
+                key={t.autor}
+                className="border p-6"
+                style={{ borderColor: "#27272a" }}
+              >
+                <p
+                  className="text-4xl mb-4"
+                  style={{ color: "#c9a84c", fontFamily: "var(--font-playfair)" }}
+                >
+                  &ldquo;
+                </p>
+                <p className="text-zinc-300 text-sm leading-relaxed mb-6 italic">
+                  {t.texto}
+                </p>
+                <div className="border-t pt-4" style={{ borderColor: "#27272a" }}>
+                  <p className="font-semibold text-sm">{t.autor}</p>
+                  <p className="text-zinc-500 text-xs">{t.cargo}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACTO */}
+      <section
+        id="contacto"
+        className="py-24"
+        style={{ backgroundColor: "#0d0d10" }}
+      >
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <p
+            className="text-xs tracking-[0.4em] uppercase mb-4"
+            style={{ color: "#c9a84c" }}
+          >
+            Escríbenos
+          </p>
+          <h2
+            className="text-4xl md:text-5xl font-bold mb-6"
+            style={{ fontFamily: "var(--font-playfair)" }}
+          >
+            Contacto
+          </h2>
+          <p className="text-zinc-400 mb-12 leading-relaxed text-sm">
+            Atendemos consultas de lunes a viernes, salvo cuando Paco decide que
+            la agenda puede esperar. Para urgencias, dejar atún frente a la
+            puerta del bufete y aguardar pacientemente.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6 mb-12 text-left">
+            {[
+              {
+                titulo: "Horario",
+                lineas: ["L–V: 10h–14h", "Resto: bajo consulta"],
+                nota: "Agustín no antes de las 11h",
+              },
+              {
+                titulo: "Ubicación",
+                lineas: ["Madrid, España", "Barrio de las Croquetas"],
+                nota: "Cerca del parque donde duerme Paco",
+              },
+              {
+                titulo: "Especialidades",
+                lineas: ["RGPD · LOPDGDD", "Derecho Felino"],
+                nota: "Y siesta jurídica avanzada",
+              },
+            ].map((item) => (
+              <div
+                key={item.titulo}
+                className="border p-6"
+                style={{ borderColor: "#27272a" }}
+              >
+                <p
+                  className="text-xs tracking-widest uppercase mb-3"
+                  style={{ color: "#c9a84c" }}
+                >
+                  {item.titulo}
+                </p>
+                {item.lineas.map((l) => (
+                  <p key={l} className="text-sm text-zinc-400">
+                    {l}
+                  </p>
+                ))}
+                <p className="text-zinc-600 text-xs mt-2 italic">{item.nota}</p>
+              </div>
+            ))}
+          </div>
+          <a
+            href="mailto:paco.paula.agustin@bufete.cat"
+            className="inline-block px-10 py-4 text-sm font-bold tracking-widest uppercase transition-opacity hover:opacity-80"
+            style={{ backgroundColor: "#c9a84c", color: "#09090b" }}
+          >
+            Solicitar Consulta
+          </a>
+          <p className="text-zinc-700 text-xs mt-6">
+            * El tiempo de respuesta depende del nivel de interés de Paco en el
+            asunto.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t py-10" style={{ borderColor: "#18181b" }}>
+        <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div
+            className="font-bold tracking-widest text-sm uppercase"
+            style={{ fontFamily: "var(--font-playfair)", color: "#c9a84c" }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Bufete Paco, Paula & Agustín
+          </div>
+          <p className="text-zinc-600 text-xs text-center">
+            © 2025 Bufete Paco, Paula & Agustín · Colegiados en el ICAM ·
+            Todos los derechos reservados · Especialmente el de la siesta
+          </p>
+          <p className="text-zinc-700 text-xs">Powered by croquetas & Next.js</p>
         </div>
-      </main>
-    </div>
+      </footer>
+    </main>
   );
 }
