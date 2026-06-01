@@ -105,21 +105,31 @@ const honorarios = [
 const testimonios = [
   {
     texto:
-      "Gracias a Agustín, conseguí que mi dueño me comprara la cama ortopédica premium. El RGPD aplicado al confort felino es absolutamente revolucionario.",
-    autor: "Misifu García",
-    cargo: "Gata indignada, Salamanca",
+      "Llevaba semanas mirando a mi dueño con esta cara y no me entendía. Gracias a Paco, que utilizó exactamente la misma táctica, conseguimos un acuerdo en 20 minutos. Profesionalidad pura.",
+    autor: "Ramoncín",
+    cargo: "Chihuahua indignado, Toledo",
+    foto: "/foto2.png",
   },
   {
     texto:
-      "Paco me miró fijamente durante 40 minutos en la sala de espera. Llegué a un acuerdo con mi propietario antes de que terminara la consulta. Sin palabras.",
-    autor: "Bigotes Martínez",
-    cargo: "Gato procesalmente intimidado, Sevilla",
+      "Mi cara lo dice todo. Contraté al bufete para reclamar acceso ilimitado al sofá. Ganamos. La sentencia fue inapelable: el juez vio mi foto y no pudo negarse.",
+    autor: "Esperancita",
+    cargo: "Chihuahua con derechos, Murcia",
+    foto: "/foto5.png",
   },
   {
     texto:
-      "Contraté a Paula para reclamar mi derecho constitucional a dormir 18 horas diarias. Ganamos en primera instancia. El juez también tenía gatos.",
-    autor: "Princesa López",
-    cargo: "Clienta satisfecha, Barcelona",
+      "Agustín redactó una política de privacidad para que mi dueño dejara de subirme fotos a Instagram sin consentimiento. El RGPD también protege a los peludos con dignidad.",
+    autor: "Pearlita III",
+    cargo: "Influencer forzada, Barcelona",
+    foto: "/foto8.png",
+  },
+  {
+    texto:
+      "No tengo palabras. Solo esta cara. El bufete consiguió que me dieran de comer a las horas acordadas. Primera vez en 3 años que la justicia funciona.",
+    autor: "Napoleón",
+    cargo: "Chihuahua resarcido, Madrid",
+    foto: "/foto4.png",
   },
 ];
 
@@ -226,18 +236,14 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="relative">
             <div
-              className="aspect-[4/3] overflow-hidden border relative"
+              className="aspect-[4/3] overflow-hidden border"
               style={{ borderColor: "rgba(201,168,76,0.2)", backgroundColor: "#18181b" }}
             >
-              {/* Guarda la foto como public/equipo.jpg */}
               <img
                 src="/equipo.jpg"
                 alt="Paula, Paco y Agustín — El equipo del bufete"
-                className="w-full h-full object-cover absolute inset-0"
+                className="w-full h-full object-cover"
               />
-              <div className="w-full h-full flex items-center justify-center text-6xl relative z-10 pointer-events-none">
-                ⚖️&nbsp;🐱&nbsp;🤍
-              </div>
             </div>
             <div
               className="absolute -bottom-4 -right-4 px-4 py-2 text-xs font-bold tracking-widest uppercase"
@@ -457,7 +463,7 @@ export default function Home() {
 
       {/* TESTIMONIOS */}
       <section className="py-24">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <p
               className="text-xs tracking-[0.4em] uppercase mb-4"
@@ -471,21 +477,33 @@ export default function Home() {
             >
               Testimonios
             </h2>
+            <p className="text-zinc-600 text-sm mt-3 italic">
+              No discriminamos por especie. Todos los peludos merecen justicia.
+            </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {testimonios.map((t) => (
               <div
                 key={t.autor}
-                className="border p-6"
+                className="border p-6 flex flex-col"
                 style={{ borderColor: "#27272a" }}
               >
+                {/* Foto del cliente */}
+                <div className="w-20 h-20 rounded-full overflow-hidden mb-4 mx-auto border-2"
+                  style={{ borderColor: "rgba(201,168,76,0.3)" }}>
+                  <img
+                    src={t.foto}
+                    alt={t.autor}
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
                 <p
-                  className="text-4xl mb-4"
+                  className="text-3xl mb-3 text-center"
                   style={{ color: "#c9a84c", fontFamily: "var(--font-playfair)" }}
                 >
                   &ldquo;
                 </p>
-                <p className="text-zinc-300 text-sm leading-relaxed mb-6 italic">
+                <p className="text-zinc-300 text-xs leading-relaxed mb-6 italic flex-1">
                   {t.texto}
                 </p>
                 <div className="border-t pt-4" style={{ borderColor: "#27272a" }}>
