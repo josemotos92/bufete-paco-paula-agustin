@@ -139,6 +139,14 @@ export default function Home() {
       className="min-h-screen text-zinc-100"
       style={{ backgroundColor: "#09090b", fontFamily: "var(--font-inter)" }}
     >
+      {/* BARRA DE ANUNCIO */}
+      <div
+        className="w-full py-2 px-4 text-center text-xs tracking-widest uppercase font-bold"
+        style={{ backgroundColor: "#c9a84c", color: "#09090b" }}
+      >
+        🐾 Nueva especialidad: Derecho Canino — Ahora también defendemos chihuahuas 🐾
+      </div>
+
       {/* NAVBAR */}
       <nav
         className="fixed top-0 w-full z-50 backdrop-blur-md border-b"
