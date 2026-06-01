@@ -1,28 +1,32 @@
+"use client";
+
 const socios = [
   {
     nombre: "Paula",
     cargo: "Socia Fundadora",
     especialidad: "Derecho Digital · Protección de Datos · Paciencia Infinita",
-    bio: "Colegiada nº 42.069 en el ICAM. Lleva 12 años ejerciendo y 12 años intentando que sus socios no se duerman durante los juicios. Pionera en la aplicación del RGPD al sector de las golosinas para gatos. Ha ganado el 94% de sus casos, aunque el 6% restante se resolvió cuando Paco simplemente se fue.",
+    bio: "Colegiada nº 42.069 en el ICAB. Lleva 12 años ejerciendo y 12 años intentando que sus socios no se duerman durante los juicios. Pionera en la aplicación del RGPD al sector de las golosinas para gatos. Ha ganado el 94% de sus casos, aunque el 6% restante se resolvió cuando Paco simplemente se fue.",
     logros: [
-      "Colegiada ICAM · Máster en RGPD",
+      "Colegiada ICAB · Máster en RGPD",
       "Premio 'Abogada del Año' (según sus gatos)",
       "Resistencia certificada a las faltas de atención",
       "Única socia que responde los emails",
     ],
+    foto: "/paula.jpg",
     emoji: "⚖️",
   },
   {
     nombre: "Paco",
     cargo: "Socio Senior",
     especialidad: "Derecho Felino · Intimidación Procesal · Siesta Estratégica",
-    bio: "7 años en el sector (49 en años gato). Su mirada fija durante los interrogatorios ha conseguido más acuerdos extrajudiciales que todos los abogados del ICAM juntos. Especialista en derechos de paso, reclamaciones de territorio y caza mayor de ratones. No acepta casos que interrumpan su horario de siesta.",
+    bio: "7 años en el sector (49 en años gato). Su mirada fija durante los interrogatorios ha conseguido más acuerdos extrajudiciales que todos los abogados del ICAB juntos. Especialista en derechos de paso, reclamaciones de territorio y caza mayor de ratones. No acepta casos que interrumpan su horario de siesta.",
     logros: [
       "Experto en miradas intimidatorias (certificado)",
       "Campeón nacional de siesta jurídica 2022–2024",
       "Récord: 14 acuerdos en un mismo bufé",
-      "DPC — Delegado de Protección de Croquetas",
+      "DPC: Delegado de Protección de Croquetas",
     ],
+    foto: "/paco.jpg",
     emoji: "🐱",
   },
   {
@@ -36,6 +40,7 @@ const socios = [
       "Ex-asesor de la AEPD (rumores no confirmados)",
       "Récord de siesta continua: 16h 42min",
     ],
+    foto: "/agustin.jpg",
     emoji: "🤍",
   },
 ];
@@ -133,6 +138,17 @@ const testimonios = [
   },
 ];
 
+// Galería: añade aquí las fotos que metas en la carpeta public/
+// Nombres sugeridos: paco1.jpg, paco2.jpg, agustin1.jpg, agustin2.jpg, equipo2.jpg...
+const galeria = [
+  { src: "/equipo.jpg", alt: "El equipo al completo" },
+  { src: "/paco1.jpg", alt: "Paco en plena deliberación" },
+  { src: "/paco2.jpg", alt: "Paco revisando expedientes" },
+  { src: "/agustin1.jpg", alt: "Agustín redactando la política de privacidad" },
+  { src: "/agustin2.jpg", alt: "Agustín en su zona de trabajo" },
+  { src: "/equipo2.jpg", alt: "Sesión de estrategia del bufete" },
+];
+
 export default function Home() {
   return (
     <main
@@ -144,7 +160,7 @@ export default function Home() {
         className="w-full py-2 px-4 text-center text-xs tracking-widest uppercase font-bold"
         style={{ backgroundColor: "#c9a84c", color: "#09090b" }}
       >
-        🐾 Nueva especialidad: Derecho Canino — Ahora también defendemos chihuahuas 🐾
+        🐾 Nueva especialidad: Derecho Canino. Ahora también defendemos chihuahuas 🐾
       </div>
 
       {/* NAVBAR */}
@@ -165,6 +181,7 @@ export default function Home() {
           <div className="hidden md:flex gap-8 text-xs text-zinc-400 tracking-widest uppercase">
             {[
               { label: "Socios", href: "#socios" },
+              { label: "Galería", href: "#galeria" },
               { label: "Áreas", href: "#areas" },
               { label: "Honorarios", href: "#honorarios" },
               { label: "Contacto", href: "#contacto" },
@@ -195,7 +212,7 @@ export default function Home() {
             className="text-xs tracking-[0.5em] uppercase mb-8"
             style={{ color: "#c9a84c" }}
           >
-            Ilustre Bufete · Madrid · Desde 2019
+            Ilustre Bufete · Barcelona · Desde 2019
           </p>
           <h1
             className="text-5xl md:text-8xl font-bold leading-tight mb-6"
@@ -249,7 +266,7 @@ export default function Home() {
             >
               <img
                 src="/equipo.jpg"
-                alt="Paula, Paco y Agustín — El equipo del bufete"
+                alt="Paula, Paco y Agustín"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -257,7 +274,7 @@ export default function Home() {
               className="absolute -bottom-4 -right-4 px-4 py-2 text-xs font-bold tracking-widest uppercase"
               style={{ backgroundColor: "#c9a84c", color: "#09090b" }}
             >
-              ICAM · RGPD · LOPDGDD
+              ICAB · RGPD · LOPDGDD
             </div>
           </div>
           <div>
@@ -273,7 +290,7 @@ export default function Home() {
             >
               El bufete más peludo
               <br />
-              de Madrid
+              de Barcelona
             </h2>
             <p className="text-zinc-400 leading-relaxed mb-4 text-sm">
               Fundado en 2019, el Bufete Paco, Paula & Agustín nació de la
@@ -281,8 +298,8 @@ export default function Home() {
               única de quienes duermen 16 horas al día.
             </p>
             <p className="text-zinc-400 leading-relaxed mb-8 text-sm">
-              Nuestro enfoque multidisciplinar —humanos y felinos trabajando
-              juntos— nos permite abordar casos desde ángulos que los bufetes
+              Nuestro enfoque multidisciplinar, con humanos y felinos trabajando
+              juntos, nos permite abordar casos desde ángulos que los bufetes
               tradicionales simplemente no consideran. Como el de debajo de la
               mesa.
             </p>
@@ -337,7 +354,22 @@ export default function Home() {
                 className="border p-8"
                 style={{ borderColor: "#27272a" }}
               >
-                <div className="text-5xl mb-5">{socio.emoji}</div>
+                {/* Foto del socio — si no existe muestra el emoji */}
+                <div
+                  className="w-24 h-24 rounded-full overflow-hidden mb-5 border-2 flex items-center justify-center text-4xl"
+                  style={{ borderColor: "rgba(201,168,76,0.3)", backgroundColor: "#18181b" }}
+                >
+                  <img
+                    src={socio.foto}
+                    alt={socio.nombre}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                      e.currentTarget.parentElement!.querySelector("span")!.style.display = "block";
+                    }}
+                  />
+                  <span style={{ display: "none" }}>{socio.emoji}</span>
+                </div>
                 <p
                   className="text-xs tracking-widest uppercase mb-1"
                   style={{ color: "#c9a84c" }}
@@ -363,10 +395,10 @@ export default function Home() {
                       className="flex items-start gap-2 text-xs text-zinc-500"
                     >
                       <span
-                        className="mt-0.5 shrink-0"
+                        className="mt-0.5 shrink-0 text-xs"
                         style={{ color: "#c9a84c" }}
                       >
-                        —
+                        ✦
                       </span>
                       {logro}
                     </li>
@@ -378,8 +410,49 @@ export default function Home() {
         </div>
       </section>
 
+      {/* GALERÍA */}
+      <section id="galeria" className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p
+              className="text-xs tracking-[0.4em] uppercase mb-4"
+              style={{ color: "#c9a84c" }}
+            >
+              La vida en el bufete
+            </p>
+            <h2
+              className="text-4xl md:text-5xl font-bold"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              Galería
+            </h2>
+            <p className="text-zinc-600 text-sm mt-3 italic">
+              Momentos de trabajo duro, reflexión jurídica y siestas merecidas.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {galeria.map((foto, i) => (
+              <div
+                key={i}
+                className="aspect-square overflow-hidden border"
+                style={{ borderColor: "#27272a", backgroundColor: "#18181b" }}
+              >
+                <img
+                  src={foto.src}
+                  alt={foto.alt}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  onError={(e) => {
+                    (e.currentTarget.parentElement as HTMLElement).style.display = "none";
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ÁREAS */}
-      <section id="areas" className="py-24">
+      <section id="areas" className="py-24" style={{ backgroundColor: "#0d0d10" }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <p
@@ -425,7 +498,6 @@ export default function Home() {
       <section
         id="honorarios"
         className="py-24"
-        style={{ backgroundColor: "#0d0d10" }}
       >
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -470,7 +542,7 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIOS */}
-      <section className="py-24">
+      <section className="py-24" style={{ backgroundColor: "#0d0d10" }}>
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <p
@@ -496,9 +568,10 @@ export default function Home() {
                 className="border p-6 flex flex-col"
                 style={{ borderColor: "#27272a" }}
               >
-                {/* Foto del cliente */}
-                <div className="w-20 h-20 rounded-full overflow-hidden mb-4 mx-auto border-2"
-                  style={{ borderColor: "rgba(201,168,76,0.3)" }}>
+                <div
+                  className="w-20 h-20 rounded-full overflow-hidden mb-4 mx-auto border-2"
+                  style={{ borderColor: "rgba(201,168,76,0.3)" }}
+                >
                   <img
                     src={t.foto}
                     alt={t.autor}
@@ -528,7 +601,6 @@ export default function Home() {
       <section
         id="contacto"
         className="py-24"
-        style={{ backgroundColor: "#0d0d10" }}
       >
         <div className="max-w-2xl mx-auto px-6 text-center">
           <p
@@ -557,7 +629,7 @@ export default function Home() {
               },
               {
                 titulo: "Ubicación",
-                lineas: ["Madrid, España", "Barrio de las Croquetas"],
+                lineas: ["Barcelona, España", "Barrio de les Croquetes"],
                 nota: "Cerca del parque donde duerme Paco",
               },
               {
@@ -610,10 +682,10 @@ export default function Home() {
             Bufete Paco, Paula & Agustín
           </div>
           <p className="text-zinc-600 text-xs text-center">
-            © 2025 Bufete Paco, Paula & Agustín · Colegiados en el ICAM ·
+            © 2025 Bufete Paco, Paula & Agustín · Colegiados en el ICAB ·
             Todos los derechos reservados · Especialmente el de la siesta
           </p>
-          <p className="text-zinc-700 text-xs">Powered by croquetas & Next.js</p>
+          <p className="text-zinc-700 text-xs">Powered by croquetes & Next.js</p>
         </div>
       </footer>
     </main>
