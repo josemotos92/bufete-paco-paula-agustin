@@ -138,15 +138,37 @@ const testimonios = [
   },
 ];
 
-// Galería: añade aquí las fotos que metas en la carpeta public/
-// Nombres sugeridos: paco1.jpg, paco2.jpg, agustin1.jpg, agustin2.jpg, equipo2.jpg...
 const galeria = [
-  { src: "/equipo.jpg", alt: "El equipo al completo" },
-  { src: "/paco1.jpg", alt: "Paco en plena deliberación" },
-  { src: "/paco2.jpg", alt: "Paco revisando expedientes" },
-  { src: "/agustin1.jpg", alt: "Agustín redactando la política de privacidad" },
-  { src: "/agustin2.jpg", alt: "Agustín en su zona de trabajo" },
-  { src: "/equipo2.jpg", alt: "Sesión de estrategia del bufete" },
+  {
+    src: "/equipo.jpg",
+    alt: "El equipo al completo",
+    caption: "Foto oficial del bufete. Nadie quiso sonreír.",
+  },
+  {
+    src: "/agustin1.jpg",
+    alt: "Agustín en su despacho",
+    caption: "Agustín redactando la política de privacidad. Lleva así desde las 10h.",
+  },
+  {
+    src: "/equipo2.jpg",
+    alt: "Sesión de mediación entre socios",
+    caption: "Mediación fallida. Paco impugna la orden del día. Agustín no cede.",
+  },
+  {
+    src: "/equipo3.jpg",
+    alt: "Consejo de socios",
+    caption: "Consejo de socios en plena deliberación. Acuerdo unánime: más croquetas.",
+  },
+  {
+    src: "/paco1.jpg",
+    alt: "Paco revisando el expediente",
+    caption: "Paco revisando el expediente 247/2025. Veredicto: requiere siesta adicional.",
+  },
+  {
+    src: "/paco2.jpg",
+    alt: "Paco en su despacho provisional",
+    caption: "El nuevo despacho de Paco. Talla 11.5. Le viene justo.",
+  },
 ];
 
 export default function Home() {
@@ -434,17 +456,24 @@ export default function Home() {
             {galeria.map((foto, i) => (
               <div
                 key={i}
-                className="aspect-square overflow-hidden border"
+                className="aspect-square overflow-hidden border relative group"
                 style={{ borderColor: "#27272a", backgroundColor: "#18181b" }}
               >
                 <img
                   src={foto.src}
                   alt={foto.alt}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {
                     (e.currentTarget.parentElement as HTMLElement).style.display = "none";
                   }}
                 />
+                {/* Caption al hacer hover */}
+                <div className="absolute inset-0 flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{ background: "linear-gradient(to top, rgba(9,9,11,0.9) 0%, transparent 60%)" }}>
+                  <p className="text-xs text-zinc-300 italic p-4 leading-relaxed">
+                    {foto.caption}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
