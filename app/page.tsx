@@ -5,7 +5,7 @@ const socios = [
     nombre: "Paula",
     cargo: "Socia Fundadora",
     especialidad: "Derecho Digital · Protección de Datos · Paciencia Infinita",
-    bio: "Colegiada nº 42.069 en el ICAB. Lleva 12 años ejerciendo y 12 años intentando que sus socios no se duerman durante los juicios. Pionera en la aplicación del RGPD al sector de las golosinas para gatos. Ha ganado el 94% de sus casos, aunque el 6% restante se resolvió cuando Paco simplemente se fue.",
+    bio: "Colegiada nº 42.069 en el ICAB. Lleva 12 años ejerciendo y 12 años intentando que sus socios no se duerman durante los juicios. Pionera en el RGPD aplicado a golosinas felinas. Ha ganado el 94% de sus casos. El 6% restante coincide con los días de nieve, cuando Paula estaba en pista.",
     logros: [
       "Colegiada ICAB · Máster en RGPD",
       "Premio 'Abogada del Año' (según sus gatos)",
@@ -188,6 +188,31 @@ const galeria = [
     src: "/image-1780332171328.jpg",
     alt: "Paco en su despacho provisional",
     caption: "El despacho de Paco. Cloudstratus talla 11.5. Le viene justo pero es suyo.",
+  },
+  {
+    src: "/image-1780332427506.jpg",
+    alt: "Los socios en acuerdo total",
+    caption: "Reunión de socios. Orden del día: estar cómodos. Aprobado por unanimidad.",
+  },
+  {
+    src: "/image-1780332436059.jpg",
+    alt: "Paco en la sala de deliberaciones",
+    caption: "Paco en su sala de deliberaciones privada. Privacísima.",
+  },
+  {
+    src: "/image-1780332430836.jpg",
+    alt: "Paula preparando el alegato de invierno",
+    caption: "Paula preparando su alegato en las alturas. Las pistas también son su despacho.",
+  },
+  {
+    src: "/image-1780332433632.jpg",
+    alt: "Retiro estratégico anual del bufete",
+    caption: "El retiro estratégico anual. Los gatos se quedan en casa. Agustín no lo sabe todavía.",
+  },
+  {
+    src: "/image-1780332438825.jpg",
+    alt: "Paula subiendo al siguiente caso",
+    caption: "Paula subiendo hacia el siguiente caso. Literalmente.",
   },
 ];
 
