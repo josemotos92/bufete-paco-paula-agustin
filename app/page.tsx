@@ -12,7 +12,7 @@ const socios = [
       "Resistencia certificada a las faltas de atención",
       "Única socia que responde los emails",
     ],
-    foto: "/paula.jpg",
+    foto: "/image-1780332351606.jpg",
     emoji: "⚖️",
   },
   {
@@ -26,7 +26,7 @@ const socios = [
       "Récord: 14 acuerdos en un mismo bufé",
       "DPC: Delegado de Protección de Croquetas",
     ],
-    foto: "/paco.jpg",
+    foto: "/image-1780332171328.jpg",
     emoji: "🐱",
   },
   {
@@ -40,7 +40,7 @@ const socios = [
       "Ex-asesor de la AEPD (rumores no confirmados)",
       "Récord de siesta continua: 16h 42min",
     ],
-    foto: "/agustin.jpg",
+    foto: "/image-1780332357207.jpg",
     emoji: "🤍",
   },
 ];
@@ -140,19 +140,24 @@ const testimonios = [
 
 const galeria = [
   {
+    src: "/image-1780332342368.jpg",
+    alt: "Los socios felinos en su mejor momento",
+    caption: "Agustín y Paco. Disponibles para casos de alta complejidad. Y para croquetas.",
+  },
+  {
     src: "/equipo.jpg",
     alt: "El equipo al completo",
     caption: "Foto oficial del bufete. Nadie quiso sonreír.",
   },
   {
-    src: "/agus.jpg",
-    alt: "Agustín en su despacho",
-    caption: "Agustín redactando la política de privacidad. Lleva así desde las 10h.",
+    src: "/image-1780332351606.jpg",
+    alt: "Paula con Paco",
+    caption: "Paula en consulta privada con el socio senior. Paco no estaba de acuerdo.",
   },
   {
     src: "/pacoyaguspelea.jpg",
     alt: "Sesión de mediación entre socios",
-    caption: "Mediación fallida. Paco impugna la orden del día. Agustín no cede.",
+    caption: "Mediación fallida. Paco impugna la orden del día. Agustín no cede. St. Moritz de fondo.",
   },
   {
     src: "/image-1780332157624.jpg",
@@ -160,9 +165,24 @@ const galeria = [
     caption: "Consejo de socios en plena deliberación. Acuerdo unánime: más croquetas.",
   },
   {
+    src: "/image-1780332357207.jpg",
+    alt: "Agustín revisando los honorarios",
+    caption: "Agustín evaluando si el pastel cubre los honorarios del mes. Veredicto: insuficiente.",
+  },
+  {
+    src: "/agus.jpg",
+    alt: "Agustín en su despacho",
+    caption: "Agustín redactando la política de privacidad número 48. Lleva así desde las 10h.",
+  },
+  {
+    src: "/image-1780332359997.jpg",
+    alt: "Paco tras el juicio",
+    caption: "Paco tras ganar el caso. El sofá es su sala de celebraciones.",
+  },
+  {
     src: "/image-1780332168359.jpg",
-    alt: "Paco en plena oratoria",
-    caption: "Paco ensayando su alegato final. La intensidad es total.",
+    alt: "Paco durante el alegato",
+    caption: "Paco en pleno alegato. Nadie en la sala se atrevió a interrumpirle.",
   },
   {
     src: "/image-1780332171328.jpg",
@@ -452,11 +472,11 @@ export default function Home() {
               Momentos de trabajo duro, reflexión jurídica y siestas merecidas.
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
             {galeria.map((foto, i) => (
               <div
                 key={i}
-                className="aspect-square overflow-hidden border relative group"
+                className={`overflow-hidden border relative group ${i === 0 ? "col-span-2 md:col-span-2 row-span-2" : "aspect-square"}`}
                 style={{ borderColor: "#27272a", backgroundColor: "#18181b" }}
               >
                 <img
