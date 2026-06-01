@@ -207,7 +207,7 @@ export default function Home() {
             Bufete P.P.A.
           </div>
           <div className="hidden md:flex gap-8 text-xs text-zinc-400 tracking-widest uppercase">
-            {[{ label: "Socios", href: "#socios" }, { label: "Galería", href: "#galeria" }, { label: "Áreas", href: "#areas" }, { label: "FAQ", href: "#faq" }, { label: "Contacto", href: "#contacto" }].map((item) => (
+            {[{ label: "Socios", href: "#socios" }, { label: "Galería", href: "#galeria" }, { label: "Áreas", href: "#areas" }, { label: "FAQ", href: "#faq" }, { label: "Contacto", href: "#contacto" }, { label: "🔍 Auditoría", href: "/auditoria" }].map((item) => (
               <a key={item.label} href={item.href} className="hover:text-white transition-colors duration-200">{item.label}</a>
             ))}
           </div>
