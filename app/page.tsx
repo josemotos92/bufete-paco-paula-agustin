@@ -145,17 +145,17 @@ const galeria = [
     caption: "Foto oficial del bufete. Nadie quiso sonreír.",
   },
   {
-    src: "/agustin1.jpg",
+    src: "/agus.jpg",
     alt: "Agustín en su despacho",
     caption: "Agustín redactando la política de privacidad. Lleva así desde las 10h.",
   },
   {
-    src: "/equipo2.jpg",
+    src: "/pacoyaguspelea.jpg",
     alt: "Sesión de mediación entre socios",
     caption: "Mediación fallida. Paco impugna la orden del día. Agustín no cede.",
   },
   {
-    src: "/equipo3.jpg",
+    src: "/image-1780332157624.jpg",
     alt: "Consejo de socios",
     caption: "Consejo de socios en plena deliberación. Acuerdo unánime: más croquetas.",
   },
