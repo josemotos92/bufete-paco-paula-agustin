@@ -160,14 +160,14 @@ const galeria = [
     caption: "Consejo de socios en plena deliberación. Acuerdo unánime: más croquetas.",
   },
   {
-    src: "/paco1.jpg",
-    alt: "Paco revisando el expediente",
-    caption: "Paco revisando el expediente 247/2025. Veredicto: requiere siesta adicional.",
+    src: "/image-1780332168359.jpg",
+    alt: "Paco en plena oratoria",
+    caption: "Paco ensayando su alegato final. La intensidad es total.",
   },
   {
-    src: "/paco2.jpg",
+    src: "/image-1780332171328.jpg",
     alt: "Paco en su despacho provisional",
-    caption: "El nuevo despacho de Paco. Talla 11.5. Le viene justo.",
+    caption: "El despacho de Paco. Cloudstratus talla 11.5. Le viene justo pero es suyo.",
   },
 ];
 
