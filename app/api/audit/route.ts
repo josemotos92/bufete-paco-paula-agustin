@@ -95,6 +95,68 @@ function extraerTexto(html: string): string {
     .slice(0, 40000);
 }
 
+// Busca enlaces a páginas legales y descarga su contenido
+async function descargarPaginasLegales(
+  html: string,
+  baseUrl: string
+): Promise<string> {
+  // Patrones precisos: solo documentos legales reales, NO páginas de servicios.
+  // Cada patrón tiene una prioridad (menor = más importante).
+  const patrones: { re: RegExp; prio: number }[] = [
+    { re: /pol[ií]tica[-/]?(de[-/]?)?privacidad|privacy[-]?policy/i, prio: 0 },
+    { re: /aviso[-/]?legal|legal[-]?notice/i, prio: 1 },
+    { re: /pol[ií]tica[-/]?(de[-/]?)?cookies|cookie[-]?policy/i, prio: 2 },
+    { re: /t[ée]rminos[-/]?(y[-/]?)?condiciones|terms/i, prio: 3 },
+  ];
+
+  // Extrae todos los href del HTML
+  const hrefs = [...html.matchAll(/href=["']([^"']+)["']/gi)].map((m) => m[1]);
+
+  // Filtra los que parecen páginas legales, con su prioridad
+  const base = new URL(baseUrl);
+  const encontrados = new Map<string, number>(); // url -> prioridad
+  for (const href of hrefs) {
+    for (const { re, prio } of patrones) {
+      if (re.test(href)) {
+        try {
+          const abs = new URL(href, base).href;
+          if (abs.startsWith("http") && !encontrados.has(abs)) {
+            encontrados.set(abs, prio);
+          }
+        } catch {
+          /* href inválido, ignorar */
+        }
+        break;
+      }
+    }
+  }
+
+  // Ordena por prioridad (privacidad primero) y descarga hasta 4
+  const urls = [...encontrados.entries()]
+    .sort((a, b) => a[1] - b[1])
+    .map((e) => e[0])
+    .slice(0, 4);
+  const textos = await Promise.all(
+    urls.map(async (u) => {
+      try {
+        const ctrl = new AbortController();
+        const t = setTimeout(() => ctrl.abort(), 8000);
+        const res = await fetch(u, {
+          signal: ctrl.signal,
+          headers: { "User-Agent": "Mozilla/5.0 (compatible; AuditoriaRGPD-Bufete/1.0)" },
+        });
+        clearTimeout(t);
+        const h = await res.text();
+        return `\n\n=== PÁGINA LEGAL: ${u} ===\n${extraerTexto(h).slice(0, 15000)}`;
+      } catch {
+        return "";
+      }
+    })
+  );
+
+  return textos.join("");
+}
+
 async function analisisLegalClaude(
   texto: string,
   url: string
@@ -153,16 +215,16 @@ Para cada check, escribe un comentarioPaco breve (1-2 frases) en primera persona
 
 Después escribe un resumenPaco: un párrafo de 2-3 frases con el veredicto general de Paco sobre la web, en su tono characterístico.
 
-IMPORTANTE: basa tu análisis SOLO en el contenido proporcionado. Si no encuentras un documento, asume que no existe (superado=false). Sé honesto y riguroso.
+IMPORTANTE: el CONTENIDO incluye la página de inicio Y el texto completo de las páginas legales (aviso legal, privacidad, cookies) si existen, marcadas con "=== PÁGINA LEGAL: ... ===". Analiza TODO ese contenido, no solo la home. Si un documento legal aparece con su contenido completo, valóralo por lo que dice realmente. Solo marca superado=false si el documento no existe o le falta información obligatoria de verdad. Sé honesto y riguroso.
 
 CONTENIDO DE LA WEB:
 ${texto}`;
 
   try {
     const response = await client.messages.create({
-      model: "claude-opus-4-8",
+      model: "claude-sonnet-4-6",
       max_tokens: 4000,
-      output_config: { format: { type: "json_schema", schema } },
+      output_config: { effort: "medium", format: { type: "json_schema", schema } },
       messages: [{ role: "user", content: prompt }],
     });
 
@@ -218,7 +280,13 @@ export async function POST(req: NextRequest) {
     const tecnicos = checksTecnicos(html, url);
 
     // Capa 2: legales con Claude (si hay API key)
-    const texto = extraerTexto(html);
+    // Sigue los enlaces a las páginas legales y descarga su contenido
+    const textoLegal = await descargarPaginasLegales(html, url);
+    // La home solo aporta contexto (8K basta); las páginas legales son lo importante
+    const texto =
+      "=== PÁGINA DE INICIO ===\n" +
+      extraerTexto(html).slice(0, 8000) +
+      textoLegal;
     const analisis = await analisisLegalClaude(texto, url);
 
     // Puntos fijos por check legal (no fiarse de lo que devuelve Claude)
