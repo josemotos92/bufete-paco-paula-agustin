@@ -1,17 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #09090b;
-  --foreground: #f4f4f5;
-  --gold: #c9a84c;
-  --gold-light: #e8c97a;
+  --background: #f2eee6;
+  --foreground: #181817;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-gold: var(--gold);
-  --color-gold-light: var(--gold-light);
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
 }
@@ -25,25 +21,45 @@ html {
   scroll-behavior: smooth;
 }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+::selection {
+  background: #a24a39;
+  color: #fff8ee;
 }
-@keyframes marquee-reverse {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0); }
-}
-.animate-marquee         { animation: marquee         30s linear infinite; }
-.animate-marquee-reverse { animation: marquee-reverse 30s linear infinite; }
 
-@keyframes glow-pulse {
-  0%, 100% { opacity: 0.4; }
-  50%       { opacity: 0.8; }
+.section-kicker {
+  color: #a24a39;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  line-height: 1.5rem;
+  text-transform: uppercase;
 }
-.glow-pulse { animation: glow-pulse 4s ease-in-out infinite; }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-8px); }
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
-.float { animation: float 6s ease-in-out infinite; }
+
+.marquee-track {
+  animation: marquee-scroll 26s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

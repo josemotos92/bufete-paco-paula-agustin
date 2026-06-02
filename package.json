@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.100.1",
     "@vercel/toolbar": "^0.2.6",
     "framer-motion": "^12.40.0",
     "next": "16.2.6",

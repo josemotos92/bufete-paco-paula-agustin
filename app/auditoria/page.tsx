@@ -19,6 +19,8 @@ interface AuditResult {
   url: string;
   infracciones: number;
   veredicto: { nivel: string; texto: string; emoji: string };
+  resumenPaco: string | null;
+  analisisIA: boolean;
 }
 
 const gravedadLabel: Record<string, string> = {
@@ -242,7 +244,43 @@ export default function AuditoriaPage() {
                   ? "Paco detecta 1 infracción grave. No es catastrófico, pero hay que solucionarlo."
                   : `Paco detecta ${result.infracciones} infracciones graves. Está muy molesto y recomienda actuar de inmediato.`}
               </p>
+
+              {result.analisisIA && (
+                <div
+                  className="inline-flex items-center gap-2 mt-4 px-3 py-1 text-xs rounded-full"
+                  style={{ backgroundColor: "rgba(201,168,76,0.1)", color: "#c9a84c" }}
+                >
+                  🧠 Análisis inteligente del contenido legal por Paco
+                </div>
+              )}
             </div>
+
+            {/* RESUMEN DE PACO */}
+            {result.resumenPaco && (
+              <div
+                className="border p-6 mb-6 flex gap-4"
+                style={{ borderColor: "rgba(201,168,76,0.2)", backgroundColor: "#0d0d10" }}
+              >
+                <div
+                  className="w-12 h-12 rounded-full overflow-hidden border-2 shrink-0"
+                  style={{ borderColor: "rgba(201,168,76,0.4)" }}
+                >
+                  <img
+                    src="/image-1780332171328.jpg"
+                    alt="Paco"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <p className="text-xs tracking-widest uppercase mb-2" style={{ color: "#c9a84c" }}>
+                    El veredicto de Paco
+                  </p>
+                  <p className="text-zinc-300 text-sm leading-relaxed italic">
+                    &ldquo;{result.resumenPaco}&rdquo;
+                  </p>
+                </div>
+              </div>
+            )}
 
             {/* SCORE BAR */}
             <div className="mb-6 px-1">

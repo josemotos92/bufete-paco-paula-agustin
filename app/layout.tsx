@@ -15,9 +15,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Bufete Paco, Paula & Agustín | Justicia con Pelaje desde 2019",
+  title: "Paco & Agustín | Oficina Privada de Marca",
   description:
-    "Expertos en Protección de Datos, Derechos Digitales y Derecho Felino Internacional. Colegiados en el ICAM. Primera consulta gratis con croquetas.",
+    "Oficina independiente de marca para moda, belleza y hospitalidad de lujo. Marbella, París, Milán, St. Moritz e Ibiza.",
 };
 
 export default function RootLayout({
